@@ -4,7 +4,61 @@
 
 本專案提供兩種鍵位映射版本：
 1. **標準版**：僅使用 12 個按鍵（`0-9`、`↑` / `/`、`↓` / `*`），適合一般鍵盤或模擬器。
+
+<table>
+  <tr align="center">
+    <td>NumLock</td>
+    <td>/(↑)</td>
+    <td>*(↓)</td>
+    <td>-</td>
+  </tr>
+  <tr align="center">
+    <td>7</td>
+    <td>8</td>
+    <td>9</td>
+    <td rowspan="2">+</td>
+  </tr>
+  <tr align="center">
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+  </tr>
+  <tr align="center">
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    <td rowspan="2">enter</td>
+  </tr>
+  <tr align="center">
+    <td colspan="2">0</td>
+    <td>.</td>
+  </tr>
+</table>
+
 2. **LIME 版**：僅使用 12 個按鍵（`0-9`、`↑` / `,`、`↓` / `.`），專為 LIME 輸入法設計，可避免符號衝突並便於行動裝置輸入。
+
+<table>
+  <tr align="center">
+    <td>7</td>
+    <td>8</td>
+    <td>9</td>
+  </tr>
+  <tr align="center">
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+  </tr>
+  <tr align="center">
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+  </tr>
+  <tr align="center">
+    <td>,(↑)</td>
+    <td>0</td>
+    <td>.(↓)</td>
+  </tr>
+</table>
 
 專案中提供了對應的 Python 轉換腳本，能將現有的行列 30 `.cin` 格式對照表，自動轉換為行列 12 的 `.cin` 格式對照表。
 
