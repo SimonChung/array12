@@ -91,11 +91,11 @@ python convert_ar30_to_ar12.py <輸入的行列30_cin檔案> <輸出的行列12_
 **範例**：
 * 轉換標準字表：
   ```bash
-  python convert_ar30_to_ar12.py ar30-regular-v2026-1.0-20260329.cin ar12-regular-v2026-1.0-20260329.cin
+  python convert_ar30_to_ar12.py ar30-regular-2026-1.1-20260928.cin ar12-regular-2026-1.1-20260928.cin
   ```
 * 轉換大字表：
   ```bash
-  python convert_ar30_to_ar12.py ar30-big-v2026-1.02-20260407.cin ar12-big-v2026-1.02-20260407.cin
+  python convert_ar30_to_ar12.py ar30-big-2026-1.1-20260928.cin ar12-big-2026-1.1-20260928.cin
   ```
 
 ### 2. LIME 版轉換
@@ -107,11 +107,11 @@ python convert_ar30_to_ar12_lime.py <輸入的行列30_cin檔案> <輸出的行�
 **範例**：
 * 轉換 LIME 標準字表：
   ```bash
-  python convert_ar30_to_ar12_lime.py ar30-regular-v2026-1.0-20260329.cin ar12-lime-regular-v2026-1.0-20260329.cin
+  python convert_ar30_to_ar12_lime.py ar30-regular-2026-1.1-20260928.cin ar12-lime-regular-2026-1.1-20260928.cin
   ```
 * 轉換 LIME 大字表：
   ```bash
-  python convert_ar30_to_ar12_lime.py ar30-big-v2026-1.02-20260407.cin ar12-lime-big-v2026-1.02-20260407.cin
+  python convert_ar30_to_ar12_lime.py ar30-big-2026-1.1-20260928.cin ar12-lime-big-2026-1.1-20260928.cin
   ```
 
 ---
