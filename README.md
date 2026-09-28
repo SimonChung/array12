@@ -120,12 +120,12 @@ python convert_ar30_to_ar12_lime.py <輸入的行列30_cin檔案> <輸出的行�
 
 *   [convert_ar30_to_ar12.py](convert_ar30_to_ar12.py)：標準版 Python 轉換腳本。
 *   [convert_ar30_to_ar12_lime.py](convert_ar30_to_ar12_lime.py)：LIME 版 Python 轉換腳本。
-*   `ar30-regular-v2026-1.0-20260329.cin`：行列 30 標準字表（輸入源）。
-*   `ar12-regular-v2026-1.0-20260329.cin`：轉換後的行列 12 標準字表。
-*   `ar12-lime-regular-v2026-1.0-20260329.cin`：轉換後的行列 12 LIME 標準字表。
-*   `ar30-big-v2026-1.02-20260407.cin`：行列 30 大字表（輸入源）。
-*   `ar12-big-v2026-1.02-20260407.cin`：轉換後的行列 12 大字表。
-*   `ar12-lime-big-v2026-1.02-20260407.cin`：轉換後的行列 12 LIME 大字表。
+*   `ar30-regular-2026-1.1-20260928.cin`：行列 30 標準字表（輸入源）。
+*   `ar12-regular-2026-1.1-20260928.cin`：轉換後的行列 12 標準字表。
+*   `ar12-lime-regular-2026-1.1-20260928.cin`：轉換後的行列 12 LIME 標準字表。
+*   `ar30-big-2026-1.1-20260928.cin`：行列 30 大字表（輸入源）。
+*   `ar12-big-2026-1.1-20260928.cin`：轉換後的行列 12 大字表。
+*   `ar12-lime-big-2026-1.1-20260928.cin`：轉換後的行列 12 LIME 大字表。
 
 ## 授權
 
