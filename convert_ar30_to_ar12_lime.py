@@ -14,6 +14,15 @@ def convert_cin(input_file, output_file):
     def replace_key(key):
         return "".join(mapping.get(c, c) for c in key)
 
+    # Opening the output in write mode would truncate the input when both paths
+    # name the same inode (including hard-link aliases), so check first.
+    try:
+        if os.path.samefile(input_file, output_file):
+            raise ValueError("input and output must be different files")
+    except FileNotFoundError:
+        # A new output file cannot already alias the input.
+        pass
+
     with open(input_file, 'r', encoding='utf-8') as f_in, \
          open(output_file, 'w', encoding='utf-8') as f_out:
 
@@ -28,14 +37,13 @@ def convert_cin(input_file, output_file):
             '%flag_disp_full_match',
             '%flag_disp_partial_match'
         }
-        chardef_header_lines = {
-            '1\t1', '2\t2', '3\t3', '4\t4', '5\t5',
-            '6\t6', '7\t7', '8\t8', '9\t9', '0\t0'
-        }
-
         for line in f_in:
 
             stripped = line.strip()
+
+            if line.lstrip().startswith('#'):
+                f_out.write(line)
+                continue
 
             if stripped == '%quick begin':
                 in_quick = True
@@ -68,28 +76,32 @@ def convert_cin(input_file, output_file):
                 f_out.write(line)
                 continue
             if in_chardef:
-                if chardef_skip_header:
-                    if stripped in chardef_header_lines:
-                        continue
+                if not stripped:
+                    f_out.write(line)
+                    continue
+
+                parts = stripped.split()
+                is_digit_header = (
+                    len(parts) == 2
+                    and len(parts[0]) == 1
+                    and parts[0] in '0123456789'
+                    and parts[1] == parts[0]
+                )
+                if chardef_skip_header and is_digit_header:
+                    continue
+
+                chardef_skip_header = False
+                if '\t' in line:
+                    key, value = line.split('\t', 1)
+                    f_out.write(f"{replace_key(key)}\t{value}")
+                else:
+                    parts = line.split(None, 1)
+                    if len(parts) == 2:
+                        key, value = parts
+                        f_out.write(f"{replace_key(key)} {value}")
                     else:
-                        # Process mapping lines
-                        if '\t' in line:
-                            key, value = line.split('\t', 1)
-                            f_out.write(f"{replace_key(key)}\t{value}")
-                        else:
-                            # Try splitting by space if no tab
-                            parts = line.split(None, 1)
-                            if len(parts) == 2:
-                                key, value = parts
-                                # preserve original whitespace if possible
-                                # but since we don't know if it was space or tab,
-                                # we'll use a space.
-                                # Actually, most .cin files use tabs.
-                                f_out.write(f"{replace_key(key)} {value}")
-                            else:
-                                f_out.write(line)
-                # f_out.write(line)
-                        continue
+                        f_out.write(line)
+                continue
 
             if stripped in lines_to_delete:
                 continue
@@ -98,7 +110,7 @@ def convert_cin(input_file, output_file):
                 f_out.write(line)
                 continue
 
-            if line.startswith('#') or line.startswith('%'):
+            if line.startswith('%'):
                 processed_line = line
                 if '%ename array30' in processed_line:
                     processed_line = processed_line.replace('%ename array30', '%ename array12lime')
@@ -126,7 +138,7 @@ def convert_cin(input_file, output_file):
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python convert_ar30_to_ar13.py <input_file> <output_file>")
+        print(f"Usage: python {os.path.basename(sys.argv[0])} <input_file> <output_file>")
         sys.exit(1)
 
     convert_cin(sys.argv[1], sys.argv[2])
